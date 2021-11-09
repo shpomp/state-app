@@ -9,7 +9,9 @@ class List extends React.Component {
 	}
 	onArchive(id) {
 		const { archivedItems } = this.state;
-		this.setState({ archivedItems: [...archivedItems, id] });
+		this.setState({
+			archivedItems: [...archivedItems, id],
+		});
 	}
 	render() {
 		const { list } = this.props;

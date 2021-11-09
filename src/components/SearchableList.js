@@ -8,32 +8,26 @@ export default class SearchableList extends React.Component {
 		super(props);
 		this.state = {
 			query: "",
-			archivedItems: [],
 		};
 		this.onChange = this.onChange.bind(this);
 	}
-
-	onArchive(id) {
-		const { archivedItems } = this.state;
-		this.setState({
-			archivedItems: [...archivedItems, id],
-		});
-	}
-
 	onChange(event) {
 		const { value } = event.target;
 		this.setState({
 			query: value,
 		});
 	}
+
 	render() {
 		const { list } = this.props;
-		const { query } = this.state;
-		const filteredList = list.filter(byQuery(query));
+		const { query, archivedItems } = this.state;
+		const filteredList = list
+			.filter(byQuery(query))
+			.filter(byArchived(archivedItems));
 		return (
 			<div>
 				...
-				<List list={filteredList} />
+				<List list={filteredList} onArchive={this.onArchive} />{" "}
 			</div>
 		);
 	}
@@ -41,5 +35,11 @@ export default class SearchableList extends React.Component {
 function byQuery(query) {
 	return function (item) {
 		return !query || item.name.toLowerCase().includes(query.toLowerCase());
+	};
+}
+
+function byArchived(archivedItems) {
+	return function (item) {
+		return !archivedItems.includes(item.id);
 	};
 }
