@@ -1,16 +1,25 @@
 import React from "react";
 
 import { Search } from "./Search";
-import { List } from "./List";
+import List from "./List";
 
 export default class SearchableList extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			query: "",
+			archivedItems: [],
 		};
 		this.onChange = this.onChange.bind(this);
 	}
+
+	onArchive(id) {
+		const { archivedItems } = this.state;
+		this.setState({
+			archivedItems: [...archivedItems, id],
+		});
+	}
+
 	onChange(event) {
 		const { value } = event.target;
 		this.setState({
@@ -20,12 +29,11 @@ export default class SearchableList extends React.Component {
 	render() {
 		const { list } = this.props;
 		const { query } = this.state;
+		const filteredList = list.filter(byQuery(query));
 		return (
 			<div>
-				<Search query={query} onChange={this.onChange}>
-					Search List:
-				</Search>
-				<List list={(list || []).filter(byQuery(query))} />
+				...
+				<List list={filteredList} />
 			</div>
 		);
 	}
