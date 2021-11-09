@@ -4,24 +4,17 @@ class Search extends React.Component {
 		super(props);
 		this.state = { query: "" };
 		this.onChange = this.onChange.bind(this);
-		this.onSubmit = this.onSubmit.bind(this);
 	}
 	onChange(event) {
 		const { value } = event.target;
 		this.setState({ query: value });
 	}
-	onSubmit(event) {
-		const { query } = this.state;
-		// do something with the search value
-		// e.g. propagate it up to the parent component this.props.onSearch(query);
-		event.preventDefault();
-	}
 	render() {
 		return (
-			<form onSubmit={this.onSubmit}>
-				<input value={this.state.query} onChange={this.onChange} type="text" />
-				<button type="submit">Search</button>
-			</form>
+			<div>
+				{this.props.children}
+				<input type="text" value={this.state.query} onChange={this.onChange} />
+			</div>
 		);
 	}
 }
