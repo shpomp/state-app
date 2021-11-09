@@ -1,15 +1,14 @@
 import "./App.css";
 import Counter from "./components/Counter";
 import CounterContainer from "./components/CounterContainer";
-
-import Search from "./components/Search";
+import SearchableList from "./components/SearchableList";
 
 function App() {
 	return (
 		<div className="App">
 			<Counter />
 			<CounterContainer />
-			<Search />
+			<SearchableList />
 		</div>
 	);
 }

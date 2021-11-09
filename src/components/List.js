@@ -1,4 +1,4 @@
-function List({ list }) {
+export const List = ({ list }) => {
 	return (
 		<ul>
 			{list.map((item) => (
@@ -6,4 +6,4 @@ function List({ list }) {
 			))}
 		</ul>
 	);
-}
+};
