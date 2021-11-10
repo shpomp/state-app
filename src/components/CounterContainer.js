@@ -9,14 +9,18 @@ class CounterContainer extends React.Component {
 		this.onDecrement = this.onDecrement.bind(this);
 	}
 	onIncrement() {
-		this.setState({
-			counter: this.state.counter + 1,
-		});
+		this.setState(
+			this.setState((prevState) => ({
+				counter: prevState.counter + 1,
+			}))
+		);
 	}
 	onDecrement() {
-		this.setState({
-			counter: this.state.counter - 1,
-		});
+		this.setState(
+			this.setState((prevState) => ({
+				counter: prevState.counter - 1,
+			}))
+		);
 	}
 	render() {
 		return (
