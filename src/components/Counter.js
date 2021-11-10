@@ -10,6 +10,21 @@ class Counter extends React.Component {
 		this.setState({
 			counter: this.state.counter + 1,
 		});
+		// fetch("https://dog.ceo/api/breeds/list/all")
+		// 	.then((response) => response.json())
+		// 	.then((data) => {
+		// 		console.log(data.message);
+		// 		console.log(Object.keys(data.message));
+		// 		let dogNames = Object.keys(data.message);
+		// 		let i = 0;
+		// 		let dogBreedsArray = [];
+		// 		for (var key in dogNames) {
+		// 			let dog = { id: i, name: dogNames[i] };
+		// 			dogBreedsArray.push(dog);
+		// 			i++;
+		// 		}
+		// 		console.log(dogBreedsArray);
+		// 	});
 	}
 	onDecrement() {
 		this.setState({

@@ -1,7 +1,6 @@
-export const Search = ({ query, onChange, children }) => {
-	return (
-		<div>
-			{children} <input type="text" value={query} onChange={onChange} />{" "}
-		</div>
-	);
-};
+export const Search = ({ query, handleQuery, children }) => (
+	<div>
+		{children}
+		<input type="text" value={query} onChange={handleQuery} />
+	</div>
+);
