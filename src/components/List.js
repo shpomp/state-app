@@ -1,18 +1,12 @@
 import React from "react";
-const List = ({ list }) => {
-	const [archivedItems, setArchivedItems] = React.useState([]);
-
-	const handleArchive = (id) => {
-		setArchivedItems((archivedItems) => [...archivedItems, id]);
-	};
-
+const List = ({ list, onArchive }) => {
 	return (
 		<ul>
-			{list.filter(byArchived(archivedItems)).map((item) => (
+			{list.map((item) => (
 				<li key={item.id}>
 					<span>{item.name}</span>
 					<span>
-						<button type="button" onClick={() => handleArchive(item.id)}>
+						<button type="button" onClick={() => onArchive(item.id)}>
 							Archive
 						</button>
 					</span>
