@@ -1,4 +1,5 @@
 import React from "react";
+
 export class ArchiveableList extends React.Component {
 	constructor(props) {
 		super(props);
@@ -16,18 +17,20 @@ export class ArchiveableList extends React.Component {
 		const { archivedItems } = this.state;
 		const filteredList = list.filter(byArchived(archivedItems));
 		return (
-			<ul>
-				{filteredList.map((item) => (
-					<li key={item.id}>
-						<span>{item.name}</span>
-						<span>
-							<button type="button" onClick={() => this.onArchive(item.id)}>
-								Archive
-							</button>
-						</span>
-					</li>
-				))}
-			</ul>
+			<>
+				<ul>
+					{filteredList.map((item) => (
+						<li key={item.id}>
+							<span>{item.name}</span>
+							<span>
+								<button type="button" onClick={() => this.onArchive(item.id)}>
+									Archive
+								</button>
+							</span>
+						</li>
+					))}
+				</ul>
+			</>
 		);
 	}
 }

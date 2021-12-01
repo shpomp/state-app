@@ -4,6 +4,9 @@ import CounterContainer from "./components/CounterContainer";
 import SearchableList from "./components/SearchableList";
 import { withArchive } from "./components/ArchivableList";
 import List from "./components/List";
+
+import { doStuff } from "../src/store";
+
 const dogList = [
 	{
 		"id": 0,
@@ -394,6 +397,8 @@ function App() {
 		<div className="App">
 			<Counter />
 			<CounterContainer />
+			<button onClick={doStuff}>do stuff </button>
+
 			<p>List with archive</p>
 			<ListWithArchive list={dogList} />
 		</div>
