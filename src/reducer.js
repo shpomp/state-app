@@ -1,7 +1,7 @@
 export const TODO_ADD = "TODO_ADD";
 export const TODO_TOGGLE = "TODO_TOGGLE";
 
-export const reducer = (state, action) => {
+export const reducer = (state = [], action) => {
 	switch (action.type) {
 		case TODO_ADD: {
 			return applyAddTodo(state, action);
