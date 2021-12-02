@@ -27,16 +27,11 @@ export const doStuff = () => {
 	console.log("initial state:");
 	console.log(store.getState());
 
-	store.dispatch({
-		type: TODO_ADD,
-		todo: { id: "0", name: "learn redux" },
-	});
-	store.dispatch({
-		type: TODO_ADD,
-		todo: { id: "1", name: "learn mobx" },
-	});
-
+	store.dispatch(doAddTodo("0", "learn redux"));
+	store.dispatch(doAddTodo("1", "learn mobx"));
 	console.log(store.getState());
+
+	store.dispatch(doToggleTodo("0"));
 
 	store.dispatch({
 		type: TODO_TOGGLE,
