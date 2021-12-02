@@ -1,9 +1,12 @@
+export const TODO_ADD = "TODO_ADD";
+export const TODO_TOGGLE = "TODO_TOGGLE";
+
 export const reducer = (state, action) => {
 	switch (action.type) {
-		case "TODO_ADD": {
+		case TODO_ADD: {
 			return applyAddTodo(state, action);
 		}
-		case "TODO_TOGGLE": {
+		case TODO_TOGGLE: {
 			return applyToggleTodo(state, action);
 		}
 		default:
@@ -12,7 +15,8 @@ export const reducer = (state, action) => {
 };
 
 function applyAddTodo(state, action) {
-	return state.concat(action.todo);
+	const todo = Object.assign({}, action.todo, { completed: false });
+	return state.concat(todo);
 }
 
 function applyToggleTodo(state, action) {
