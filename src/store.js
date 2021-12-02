@@ -3,7 +3,8 @@ import { reducer } from "./reducer";
 import { TODO_ADD, TODO_TOGGLE } from "./reducer";
 //import * as actions from "./reducer";
 
-const store = createStore(reducer, []);
+const initialState = { currentUser: null, todos: [], filter: "SHOW_ALL" };
+const store = createStore(reducer, initialState);
 
 const unsubscribe = store.subscribe(() => {
 	console.log("store update, current state:");

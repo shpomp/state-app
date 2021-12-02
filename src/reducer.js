@@ -16,13 +16,15 @@ export const reducer = (state = [], action) => {
 
 function applyAddTodo(state, action) {
 	const todo = Object.assign({}, action.todo, { completed: false });
-	return state.concat(todo);
+	const todos = state.todos.concat(todo);
+	return Object.assign({}, state, { todos });
 }
 
 function applyToggleTodo(state, action) {
-	return state.map((todo) =>
+	const todos = state.todos.map((todo) =>
 		todo.id === action.todo.id
 			? Object.assign({}, todo, { completed: !todo.completed })
 			: todo
 	);
+	return Object.assign({}, state, { todos });
 }
