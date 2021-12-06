@@ -1,6 +1,6 @@
 import { createStore } from "redux";
 import { rootReducer } from "./reducer";
-import { TODO_ADD, TODO_TOGGLE } from "./reducer";
+import { TODO_ADD, TODO_TOGGLE, FILTER_SET } from "./reducer";
 //import * as actions from "./reducer";
 
 const store = createStore(rootReducer);
@@ -23,6 +23,13 @@ function doToggleTodo(id) {
 	};
 }
 
+function doSetFilter(filter) {
+	return {
+		type: FILTER_SET,
+		filter,
+	};
+}
+
 export const doStuff = () => {
 	console.log("initial state:");
 	console.log(store.getState());
@@ -38,6 +45,9 @@ export const doStuff = () => {
 		todo: { id: "0" },
 	});
 
+	console.log(store.getState());
+
+	store.dispatch(doSetFilter("COMPLETED"));
 	console.log(store.getState());
 };
 
