@@ -16,7 +16,4 @@ const List = ({ list, onArchive }) => {
 	);
 };
 
-const byArchived = (archivedItems) => (item) =>
-	!archivedItems.includes(item.id);
-
 export default List;

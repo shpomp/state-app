@@ -1,7 +1,6 @@
 import { createStore } from "redux";
 import { rootReducer } from "./reducer";
 import { TODO_ADD, TODO_TOGGLE, FILTER_SET } from "./reducer";
-//import * as actions from "./reducer";
 
 const store = createStore(rootReducer);
 
@@ -31,25 +30,18 @@ function doSetFilter(filter) {
 }
 
 export const doStuff = () => {
-	console.log("initial state:");
-	console.log(store.getState());
+	console.log("initial state:", store.getState());
 
 	store.dispatch(doAddTodo("0", "learn redux"));
 	store.dispatch(doAddTodo("1", "learn mobx"));
-	console.log(store.getState());
+	console.log("after dispatching doAddTodo", store.getState());
 
 	store.dispatch(doToggleTodo("0"));
 
-	store.dispatch({
-		type: TODO_TOGGLE,
-		todo: { id: "0" },
-	});
-
-	console.log(store.getState());
+	console.log("after dispatching doToggleTodo", store.getState());
 
 	store.dispatch(doSetFilter("COMPLETED"));
 	console.log(store.getState());
 };
 
-unsubscribe();
-//
+unsubscribe(); //

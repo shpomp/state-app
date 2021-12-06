@@ -1,7 +1,5 @@
 import "./App.css";
-import Counter from "./components/Counter";
-import CounterContainer from "./components/CounterContainer";
-import SearchableList from "./components/SearchableList";
+import CounterContainer from "./components//counter/CounterContainer";
 import { withArchive } from "./components/ArchivableList";
 import List from "./components/List";
 
@@ -395,12 +393,11 @@ const ListWithArchive = withArchive(List);
 function App() {
 	return (
 		<div className="App">
-			<Counter />
-			<CounterContainer />
-			<button onClick={doStuff}>do stuff </button>
+			<button onClick={doStuff}>tickle state </button>
 
 			<p>List with archive</p>
 			<ListWithArchive list={dogList} />
+			<CounterContainer />
 		</div>
 	);
 }
