@@ -7,7 +7,7 @@ const rootReducer = combineReducers({
 	filterState: filterReducer,
 });
 
-function todoReducer(state, action) {
+function todoReducer(state = [], action) {
 	switch (action.type) {
 		case TODO_ADD: {
 			return applyAddTodo(state, action);
@@ -20,7 +20,7 @@ function todoReducer(state, action) {
 	}
 }
 
-function filterReducer(state, action) {
+function filterReducer(state = "SHOW_ALL", action) {
 	switch (action.type) {
 		case FILTER_SET: {
 			return applySetFilter(state, action);
@@ -32,17 +32,18 @@ function filterReducer(state, action) {
 
 function applyAddTodo(state, action) {
 	const todo = Object.assign({}, action.todo, { completed: false });
-	const todos = state.todos.concat(todo);
-	return Object.assign({}, state, { todos });
+	return state.concat(todo);
 }
 
 function applyToggleTodo(state, action) {
-	const todos = state.todos.map((todo) =>
+	return state.map((todo) =>
 		todo.id === action.todo.id
 			? Object.assign({}, todo, { completed: !todo.completed })
 			: todo
 	);
-	return Object.assign({}, state, { todos });
+}
+function applySetFilter(state, action) {
+	return action.filter;
 }
 
 // The todoReducer doesn’t know anything about the filterState
