@@ -1,10 +1,9 @@
 import { createStore } from "redux";
-import { reducer } from "./reducer";
+import { rootReducer } from "./reducer";
 import { TODO_ADD, TODO_TOGGLE } from "./reducer";
 //import * as actions from "./reducer";
 
-const initialState = { currentUser: null, todos: [], filter: "SHOW_ALL" };
-const store = createStore(reducer, initialState);
+const store = createStore(rootReducer);
 
 const unsubscribe = store.subscribe(() => {
 	console.log("store update, current state:");

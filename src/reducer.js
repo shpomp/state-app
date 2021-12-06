@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 export const TODO_ADD = "TODO_ADD";
 export const TODO_TOGGLE = "TODO_TOGGLE";
+export const FILTER_SET = "FILTER_SET";
 
 const rootReducer = combineReducers({
 	todoState: todoReducer,
@@ -8,6 +9,19 @@ const rootReducer = combineReducers({
 });
 
 function todoReducer(state = [], action) {
+	switch (action.type) {
+		case TODO_ADD: {
+			return state.concat(todoEntityReducer(undefined, action));
+		}
+		case TODO_TOGGLE: {
+			return state.map((todo) => todoEntityReducer(todo, action));
+		}
+		default:
+			return state;
+	}
+}
+
+function todoEntityReducer(state, action) {
 	switch (action.type) {
 		case TODO_ADD: {
 			return applyAddTodo(state, action);
@@ -20,6 +34,16 @@ function todoReducer(state = [], action) {
 	}
 }
 
+function applyAddTodo(state, action) {
+	return Object.assign({}, action.todo, { completed: false });
+}
+
+function applyToggleTodo(todo, action) {
+	return todo.id === action.todo.id
+		? Object.assign({}, todo, { completed: !todo.completed })
+		: todo;
+}
+
 function filterReducer(state = "SHOW_ALL", action) {
 	switch (action.type) {
 		case FILTER_SET: {
@@ -30,18 +54,6 @@ function filterReducer(state = "SHOW_ALL", action) {
 	}
 }
 
-function applyAddTodo(state, action) {
-	const todo = Object.assign({}, action.todo, { completed: false });
-	return state.concat(todo);
-}
-
-function applyToggleTodo(state, action) {
-	return state.map((todo) =>
-		todo.id === action.todo.id
-			? Object.assign({}, todo, { completed: !todo.completed })
-			: todo
-	);
-}
 function applySetFilter(state, action) {
 	return action.filter;
 }
